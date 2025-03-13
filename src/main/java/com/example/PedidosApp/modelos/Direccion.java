@@ -1,8 +1,10 @@
 package com.example.PedidosApp.modelos;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import javax.lang.model.util.AbstractElementVisitor14;
+import java.util.List;
 
 @Entity
 @Table(name="Direccion")
@@ -19,6 +21,11 @@ public class Direccion {
     private String codigo_postal;
     @Column(name="pais", length=50, nullable = false)
     private String pais;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_usuario", referencedColumnName = "id_usuario")
+    @JsonBackReference
+    private Usuario usuario;
 
     public Direccion() {
     }

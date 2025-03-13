@@ -21,6 +21,10 @@ public class Pedido {
     @Column(name="total_pedido", nullable = false)
     private BigDecimal total_pedido;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_usuario", referencedColumnName = "id_usuario")
+    private Usuario usuario;
+
     public Pedido() {
     }
 
