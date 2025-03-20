@@ -1,7 +1,10 @@
 package com.example.PedidosApp.modelos;
 
 import com.example.PedidosApp.ayudas.enums.RestauranteEnum;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="Reaturante")
@@ -18,6 +21,14 @@ public class Tienda {
     private String telefono;
     @Column(name="categorias",length=50, nullable = true)
     private RestauranteEnum Categorias;
+
+    @OneToMany(mappedBy = "tienda")
+    @JsonManagedReference
+    private List<Pedido> pedidos;
+
+    @OneToMany(mappedBy = "tienda")
+    @JsonManagedReference
+    private List<Producto> productos;
 
     public Tienda() {
     }

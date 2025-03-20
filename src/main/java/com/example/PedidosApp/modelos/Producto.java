@@ -18,6 +18,14 @@ public class Producto {
     @Column(name="descripcion",nullable = true)
     private String descripcion;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_tienda", referencedColumnName = "id_restaurante")
+    private Tienda tienda;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_detalle", referencedColumnName = "detalle_pedido")
+    private Detalle detalle;
+
     public Producto() {
     }
 

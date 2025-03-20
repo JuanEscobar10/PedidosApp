@@ -3,6 +3,7 @@ package com.example.PedidosApp.modelos;
 import com.example.PedidosApp.ayudas.enums.EntregaEstado;
 import jakarta.persistence.*;
 
+import javax.naming.directory.InvalidAttributeIdentifierException;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,6 +17,10 @@ public class Entrega {
     private LocalDateTime fecha_de_entrega;
     @Column(name="estado_entrega", columnDefinition = "VARCHAR(10) DEFAULT 'ASIGANDO' ")
     private EntregaEstado estado_entrega;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_repartiodor", referencedColumnName = "id_repartidor")
+    private Repartidor repartidor;
 
     public Entrega() {
     }

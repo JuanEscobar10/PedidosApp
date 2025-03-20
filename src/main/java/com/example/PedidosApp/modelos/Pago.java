@@ -2,9 +2,12 @@ package com.example.PedidosApp.modelos;
 
 import com.example.PedidosApp.ayudas.enums.PagoEstado;
 import com.example.PedidosApp.ayudas.enums.PagoMetodos;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(name="Pagos")
 public class Pago {
@@ -18,6 +21,10 @@ public class Pago {
     private PagoEstado estado_pago;
     @Column(name="fecha_pedido", columnDefinition ="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime  fecha_pago;
+
+    @OneToMany(mappedBy = "pago")
+    @JsonManagedReference
+    private List<Pedido> pedidos;
 
     public Pago() {
     }

@@ -1,11 +1,14 @@
 package com.example.PedidosApp.modelos;
 
 import com.example.PedidosApp.ayudas.enums.PedidoEstado;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name="Pedidos")
 public class Pedido {
@@ -24,6 +27,19 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "fk_usuario", referencedColumnName = "id_usuario")
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "pedido")
+    @JsonManagedReference
+    private List<Detalle> detalles;
+
+
+    @ManyToOne
+    @JoinColumn(name = "fk_pago", referencedColumnName = "id_pago")
+    private Pedido pedido;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_tienda" , referencedColumnName = "id_restaurante")
+    private Tienda tienda;
 
     public Pedido() {
     }

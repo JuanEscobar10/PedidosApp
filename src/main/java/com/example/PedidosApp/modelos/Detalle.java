@@ -1,8 +1,10 @@
 package com.example.PedidosApp.modelos;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Entity
@@ -10,13 +12,21 @@ import java.math.BigDecimal;
 public class Detalle {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="detalle_pedido")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "detalle_pedido")
     private Integer detalle_pedido;
-    @Column(name="cantidad", nullable = false)
+    @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
-    @Column(name="subtotal",nullable = false)
+    @Column(name = "subtotal", nullable = false)
     private BigDecimal subtotal;
+
+    @ManyToOne
+    @JoinColumn(name = "pedido", referencedColumnName = "id_pedido")
+    private Pedido pedido;
+
+    @OneToMany (mappedBy = "detalle")
+    @JsonManagedReference
+    private List<Producto> productos;
 
     public Detalle() {
     }

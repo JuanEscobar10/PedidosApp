@@ -1,7 +1,10 @@
 package com.example.PedidosApp.modelos;
 
 import com.example.PedidosApp.ayudas.enums.RepartidorEnum;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="Repartidor")
@@ -18,6 +21,10 @@ public class Repartidor {
     private String correoElectronico;
     @Column(name="tipo_vehiculo", length=50, nullable=true)
     private RepartidorEnum tipoVehiculo;
+
+    @OneToMany(mappedBy = "Repartidor")
+    @JsonManagedReference
+    private List<Entrega> entrega;
 
     public Repartidor() {
     }
