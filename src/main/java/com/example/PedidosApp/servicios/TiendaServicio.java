@@ -9,5 +9,5 @@ public class TiendaServicio {
 
     @Autowired
     ITiendaRepositorio repositorio;
-    
+
 }
