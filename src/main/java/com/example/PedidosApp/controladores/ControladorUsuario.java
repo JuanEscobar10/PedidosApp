@@ -11,76 +11,77 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/usuario")
 public class ControladorUsuario {
 
-
     @Autowired
     UsuarioServicio usuarioServicio;
 
-    //Guardar
+    // Guardar
     @PostMapping
-    public ResponseEntity<?>guardar(@RequestBody Usuario datosPeticion){
+    public ResponseEntity<?> guardar(@RequestBody Usuario datosPeticion) {
         try {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(this.usuarioServicio.guardarUsuario(datosPeticion));
-        }catch (Exception error){
+        } catch (Exception error) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(error.getMessage());
         }
     }
 
-    //Buscar Todos
+    // Buscar Todos
     @GetMapping
-    public ResponseEntity<?>buscarTodos(){
+    public ResponseEntity<?> buscarTodos() {
         try {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(this.usuarioServicio.buscarTodosUsuarios());
-        }catch (Exception error){
-            return  ResponseEntity
+        } catch (Exception error) {
+            return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(error.getMessage());
         }
     }
 
-    //Buscar ID
+    // Buscar ID
     @GetMapping("/id")
-    public ResponseEntity<?>buscarPorId(@PathVariable Integer id){
+    public ResponseEntity<?> buscarPorId(@PathVariable Integer id) {
         try {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(this.usuarioServicio.buscarUsuarioPorId(id));
-        }catch (Exception error){
+        } catch (Exception error) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(error.getMessage());
         }
 
     }
-    //Modificar
+
+    // Modificar
     @PutMapping("/{id}")
-    public ResponseEntity<?> modifcar(@PathVariable Integer id, @RequestBody Usuario datos){
+    public ResponseEntity<?> modifcar(@PathVariable Integer id, @RequestBody Usuario datos) {
         try {
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(this.usuarioServicio.modificarUsuario(id,datos));
+                    .body(this.usuarioServicio.modificarUsuario(id, datos));
 
-        }catch (Exception error){
+        } catch (Exception error) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(error.getMessage());
 
-    }}
+        }
+    }
 
-    //Eliminar
+    // Eliminar
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminar(@PathVariable Integer id){
+    public ResponseEntity<?> eliminar(@PathVariable Integer id) {
         try {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(this.usuarioServicio.eliminarUsuario(id));
 
-        }catch (Exception error) {
+        } catch (Exception error) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(error.getMessage());
