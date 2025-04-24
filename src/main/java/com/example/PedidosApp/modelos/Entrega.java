@@ -1,6 +1,7 @@
 package com.example.PedidosApp.modelos;
 
 import com.example.PedidosApp.ayudas.enums.EntregaEstado;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import javax.naming.directory.InvalidAttributeIdentifierException;
@@ -20,6 +21,7 @@ public class Entrega {
 
     @ManyToOne
     @JoinColumn(name = "fk_repartiodor", referencedColumnName = "id_repartidor")
+    @JsonBackReference(value = "entrega-repartidor")
     private Repartidor repartidor;
 
     public Entrega() {

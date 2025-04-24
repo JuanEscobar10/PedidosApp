@@ -1,6 +1,7 @@
 package com.example.PedidosApp.modelos;
 
 import com.example.PedidosApp.ayudas.enums.PedidoEstado;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -26,19 +27,22 @@ public class Pedido {
 
     @ManyToOne
     @JoinColumn(name = "fk_usuario", referencedColumnName = "id_usuario")
+    //@JsonBackReference(value = "pedidos-usuario")
     private Usuario usuario;
 
     @OneToMany(mappedBy = "pedido")
-    @JsonManagedReference
+    //@JsonManagedReference(value = "detalles-pedido")
     private List<Detalle> detalles;
 
 
     @ManyToOne
     @JoinColumn(name = "fk_pago", referencedColumnName = "id_pago")
-    private Pedido pedido;
+    //@JsonBackReference(value = "pago-pedido")
+    private Pago pago;
 
     @ManyToOne
     @JoinColumn(name = "fk_tienda" , referencedColumnName = "id_restaurante")
+    //@JsonBackReference(value = "pedidos-tienda")
     private Tienda tienda;
 
     public Pedido() {

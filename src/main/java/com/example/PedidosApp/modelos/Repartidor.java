@@ -22,8 +22,8 @@ public class Repartidor {
     @Column(name="tipo_vehiculo", length=50, nullable=true)
     private RepartidorEnum tipoVehiculo;
 
-    @OneToMany(mappedBy = "Repartidor")
-    @JsonManagedReference
+    @OneToMany(mappedBy = "repartidor")
+    @JsonManagedReference(value = "entrega-repartidor")
     private List<Entrega> entrega;
 
     public Repartidor() {

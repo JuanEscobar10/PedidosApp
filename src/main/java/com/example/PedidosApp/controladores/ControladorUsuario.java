@@ -43,7 +43,7 @@ public class ControladorUsuario {
     }
 
     // Buscar ID
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable Integer id) {
         try {
             return ResponseEntity

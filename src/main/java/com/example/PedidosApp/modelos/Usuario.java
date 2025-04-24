@@ -23,13 +23,15 @@ public class Usuario {
     @Column(name="telefono_usuario", length=260, nullable = true)
     private String telefono;
     @Column(name="tipo_usuario", nullable = false)
+    @Enumerated(EnumType.STRING)
     private UsuarioEnum tipoUsuario;
 
     @OneToMany(mappedBy = "usuario")
-    @JsonManagedReference
+    @JsonManagedReference(value = "direccionesusuario")
     private List<Direccion> direcciones;
 
     @OneToMany(mappedBy = "usuario")
+    @JsonManagedReference(value = "pedidos-usuario")
     private List<Pedido>pedidos;
 
     public Usuario() {

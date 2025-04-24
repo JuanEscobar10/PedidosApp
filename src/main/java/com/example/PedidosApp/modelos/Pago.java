@@ -16,6 +16,7 @@ public class Pago {
     @Column(name="id_pago")
     private Integer id_pago;
     @Column(name="metodo_pago", nullable = false)
+    @Enumerated(EnumType.STRING)
     private PagoMetodos metodo_pago;
     @Column(name="estado_pedido", columnDefinition = "VARCHAR(10) DEFAULT 'PENDIENTE'")
     private PagoEstado estado_pago;
@@ -23,7 +24,7 @@ public class Pago {
     private LocalDateTime  fecha_pago;
 
     @OneToMany(mappedBy = "pago")
-    @JsonManagedReference
+    //@JsonManagedReference(value = "pago-pedido")
     private List<Pedido> pedidos;
 
     public Pago() {

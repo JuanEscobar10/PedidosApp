@@ -20,14 +20,15 @@ public class Tienda {
     @Column(name="telefono_restaurante", length=20, nullable = false)
     private String telefono;
     @Column(name="categorias",length=50, nullable = true)
+    @Enumerated(EnumType.STRING)
     private RestauranteEnum Categorias;
 
     @OneToMany(mappedBy = "tienda")
-    @JsonManagedReference
+    //@JsonManagedReference(value = "pedidos-tienda")
     private List<Pedido> pedidos;
 
     @OneToMany(mappedBy = "tienda")
-    @JsonManagedReference
+   // @JsonManagedReference(value = "productos-tienda")
     private List<Producto> productos;
 
     public Tienda() {
